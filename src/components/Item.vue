@@ -14,20 +14,10 @@
         v-bind="item.attributes"
         @click.native="clickEvent"
       >
-        <template v-if="item.icon">
-          <i
-            v-if="typeof item.icon === 'string' || (item.icon instanceof String)"
-            class="vsm-icon"
-            :class="item.icon"
-          />
-          <component
-            :is="item.icon.element ? item.icon.element : 'i'"
-            v-else
-            class="vsm-icon"
-            :class="item.icon.class"
-            v-bind="item.icon.attributes"
-          />
-        </template>
+        <ItemIcon
+          v-if="item.icon"
+          :icon="item.icon"
+        />
         <template v-if="!isCollapsed">
           <component
             :is="item.badge.element ? item.badge.element : 'span'"
@@ -57,20 +47,10 @@
         v-bind="item.attributes"
         @click="clickEvent"
       >
-        <template v-if="item.icon">
-          <i
-            v-if="typeof item.icon === 'string' || (item.icon instanceof String)"
-            class="vsm-icon"
-            :class="item.icon"
-          />
-          <component
-            :is="item.icon.element ? item.icon.element : 'i'"
-            v-else
-            class="vsm-icon"
-            :class="item.icon.class"
-            v-bind="item.icon.attributes"
-          />
-        </template>
+        <ItemIcon
+          v-if="item.icon"
+          :icon="item.icon"
+        />
         <template v-if="!isCollapsed">
           <component
             :is="item.badge.element ? item.badge.element : 'span'"
@@ -117,11 +97,13 @@
 
 <script>
 import SubItem from './SubItem.vue'
+import ItemIcon from './ItemIcon.vue'
 import { itemMixin, animationMixin } from '../mixin'
 
 export default {
   components: {
-    SubItem
+    SubItem,
+    ItemIcon
   },
   mixins: [itemMixin, animationMixin],
   props: {

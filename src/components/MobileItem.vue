@@ -12,20 +12,10 @@
         :event="item.disabled ? '' : 'click'"
         @click.native="clickEvent($event, true)"
       >
-        <template v-if="item.icon">
-          <i
-            v-if="typeof item.icon === 'string' || (item.icon instanceof String)"
-            class="vsm-icon"
-            :class="item.icon"
-          />
-          <component
-            :is="item.icon.element ? item.icon.element : 'i'"
-            v-else
-            class="vsm-icon"
-            :class="item.icon.class"
-            v-bind="item.icon.attributes"
-          />
-        </template>
+        <ItemIcon
+          v-if="item.icon"
+          :icon="item.icon"
+        />
         <component
           :is="item.badge.element ? item.badge.element : 'span'"
           v-if="item.badge"
@@ -50,20 +40,10 @@
         :disabled="item.disabled"
         @click="clickEvent($event, true)"
       >
-        <template v-if="item.icon">
-          <i
-            v-if="typeof item.icon === 'string' || (item.icon instanceof String)"
-            class="vsm-icon"
-            :class="item.icon"
-          />
-          <component
-            :is="item.icon.element ? item.icon.element : 'i'"
-            v-else
-            class="vsm-icon"
-            :class="item.icon.class"
-            v-bind="item.icon.attributes"
-          />
-        </template>
+        <ItemIcon
+          v-if="item.icon"
+          :icon="item.icon"
+        />
         <component
           :is="item.badge.element ? item.badge.element : 'span'"
           v-if="item.badge"
@@ -85,9 +65,13 @@
 </template>
 
 <script>
+import ItemIcon from './ItemIcon.vue'
 import { itemMixin } from '../mixin'
 
 export default {
+  components: {
+    ItemIcon
+  },
   mixins: [itemMixin],
   props: {
     item: {
