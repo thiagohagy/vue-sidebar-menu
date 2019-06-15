@@ -17,16 +17,11 @@
           v-if="item.icon"
           :icon="item.icon"
         />
-        <component
-          :is="item.badge.element ? item.badge.element : 'span'"
+        <ItemBadge
           v-if="item.badge"
+          :badge="item.badge"
           :style="[rtl ? (item.child ? {'margin-left' : '30px'} : '') : (item.child ? {'margin-right' : '30px'} : '')]"
-          class="vsm-badge"
-          :class="item.badge.class"
-          v-bind="item.badge.attributes"
-        >
-          {{ item.badge.text }}
-        </component>
+        />
         <span class="vsm-title">{{ item.title }}</span>
         <i
           v-if="item.child"
@@ -48,16 +43,11 @@
           v-if="item.icon"
           :icon="item.icon"
         />
-        <component
-          :is="item.badge.element ? item.badge.element : 'span'"
+        <ItemBadge
           v-if="item.badge"
+          :badge="item.badge"
           :style="[rtl ? (item.child ? {'margin-left' : '30px'} : '') : (item.child ? {'margin-right' : '30px'} : '')]"
-          class="vsm-badge"
-          :class="item.badge.class"
-          v-bind="item.badge.attributes"
-        >
-          {{ item.badge.text }}
-        </component>
+        />
         <span class="vsm-title">{{ item.title }}</span>
         <i
           v-if="item.child"
@@ -93,12 +83,14 @@
 <script>
 import Item from './Item.vue'
 import ItemIcon from './ItemIcon.vue'
+import ItemBadge from './ItemBadge.vue'
 import { itemMixin, animationMixin } from '../mixin'
 
 export default {
   components: {
     Item,
-    ItemIcon
+    ItemIcon,
+    ItemBadge
   },
   mixins: [itemMixin, animationMixin],
   props: {
